@@ -1,0 +1,19 @@
+{
+    "name": "tortoise",
+    "symbol": "",
+    "image": "tortise.png",
+    "properties": {
+        "files": [
+            {
+                "url": "tortise.png",
+                "type": "image/png"
+            }
+        ],
+        "creators": [
+              {
+                "address": "EpTaCbp6hhHryne2zibG14PBjCfh13Pim3PvbELKK6Rb",
+                "share": 100
+              }  
+        ]
+    }
+}
