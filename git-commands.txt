@@ -8,3 +8,7 @@ git push -u origin main
 
 
 npm install @metaplex-foundation/umi @metaplex-foundation/umi-bundle-defaults @solana/web3.js@1 @metaplex-foundation/mpl-candy-machine
+
+solana config set --keypair ~/.config/solana/devnet.json
+
+npm install @metaplex-foundation/umi@0.9.2 @metaplex-foundation/umi-bundle-defaults@0.9.2 @metaplex-foundation/mpl-candy-machine@6.0.1 @solana/web3.js@1.75.0
