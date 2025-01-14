@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import twitterLogo from "./assets/twitter-logo.svg";
 
@@ -8,6 +8,8 @@ const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const App = () => {
 
+	const [walletAddress, setWalletAddress] = useState(null);
+
 	const checkIfWalletIsConnected = async () => {
 		try {
 		  const { solana } = window;
@@ -16,7 +18,7 @@ const App = () => {
 			window.alert("Phantom wallet found!");
 			const response = await solana.connect({ onlyIfTrusted: true });
 			window.alert("Connected with publicKey", response.publicKey.toString());
-			// setWalletAddress(response.publicKey.toString());
+			setWalletAddress(response.publicKey.toString());
 		  } else {
 			alert("Solana object not found! Get a Phantom wallet.");
 		  }
@@ -25,8 +27,34 @@ const App = () => {
 		}
 	  };
 
+	const connectWallet = async() => {
+		try {
+			const { solana } = window;
+	  
+			if (solana?.isPhantom) {
+			  window.alert("Phantom wallet found!");
+			  const response = await solana.connect({ onlyIfTrusted: true });
+			  window.alert("Connected with publicKey", response.publicKey.toString());
+			  setWalletAddress(response.publicKey.toString());
+			} else {
+			  alert("Solana object not found! Get a Phantom wallet.");
+			}
+		  } catch (error) {
+			window.alert("Wallet connection error:", error);
+		  }
+	}
+
+	const renderNotConnectedContainer = () => {
+		return (<button className="cta-button connect-wallet-button" onClick={connectWallet}>
+			Connect to Wallet
+		</button>);
+	}
+
+
+
 	useEffect(() => {
 		const onLoad = async () => {
+			// return false;
 			await checkIfWalletIsConnected()
 		};
 		window.addEventListener("load", onLoad);
@@ -39,6 +67,7 @@ const App = () => {
 				<div className="header-container">
 					<p className="header">🍭 Candy Drop</p>
 					<p className="sub-text">NFT drop machine with fair mint</p>
+					{!walletAddress && renderNotConnectedContainer()}
 				</div>
 				<div className="footer-container">
 					<img
