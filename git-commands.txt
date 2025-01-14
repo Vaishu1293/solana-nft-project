@@ -5,3 +5,6 @@ git commit -m "first commit"
 git branch -M main
 git remote add origin git@github.com:Vaishu1293/solana-nft-project.git
 git push -u origin main
+
+
+npm install @metaplex-foundation/umi @metaplex-foundation/umi-bundle-defaults @solana/web3.js@1 @metaplex-foundation/mpl-candy-machine
